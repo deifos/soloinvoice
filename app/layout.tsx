@@ -3,21 +3,19 @@ import { GeistSans } from "geist/font/sans";
 
 import "./globals.css";
 
-
-
 export const metadata: Metadata = {
-  title: "Soloinvoice",
-  description: "Generate Stripe invoices in seconds",
+    title: "Soloinvoice",
+    description: "Generate Stripe invoices in seconds",
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={GeistSans.className}>{children}</body>
-    </html>
-  );
+    return (
+        <html lang="en">
+            <body className={GeistSans.className}>{children}</body>
+        </html>
+    );
 }
