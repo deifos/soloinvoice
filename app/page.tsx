@@ -9,8 +9,6 @@ export default function Home() {
     const [email, setEmail] = useState("");
     const [invoiceList, setInvoiceList] = useState([]);
 
-    //take value from input and send it to api/get-invoices
-
     const handleSubmit = async () => {
         const response = await fetch("/api/get-invoices", {
             method: "POST",
@@ -21,7 +19,6 @@ export default function Home() {
         });
 
         const { invoices } = await response.json();
-        console.log(invoices);
         setInvoiceList(invoices || []);
     };
 

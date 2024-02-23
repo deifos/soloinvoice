@@ -11,7 +11,6 @@ import {
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
     DialogFooter,
     DialogHeader,
     DialogTitle,
@@ -22,10 +21,11 @@ import html2canvas from "html2canvas";
 import { format } from "date-fns";
 import { useState } from "react";
 import { Button } from "./ui/button";
+import { Invoice } from "@/lib/types";
 
-export function InvoicesTable({ invoiceList }: any) {
+export function InvoicesTable({ invoiceList }: { invoiceList: Invoice[] }) {
     const [isOpen, setIsOpen] = useState(false);
-    const [invoice, setInvoice] = useState();
+    const [invoice, setInvoice] = useState<Invoice>();
 
     if (invoiceList?.length === 0) {
         return (
@@ -110,8 +110,12 @@ export function InvoicesTable({ invoiceList }: any) {
                                             BILL TO
                                         </h2>
                                         <p>{invoice?.customer_name}</p>
-                                        <p>{invoice?.customer_address.line1}</p>
-                                        <p>{invoice?.customer_address.line2}</p>
+                                        <p>
+                                            {invoice?.customer_address?.line1}
+                                        </p>
+                                        <p>
+                                            {invoice?.customer_address?.line2}
+                                        </p>
                                     </div>
                                 </div>
                                 <div className="text-right">
@@ -140,10 +144,12 @@ export function InvoicesTable({ invoiceList }: any) {
                                 </div>
 
                                 <div className="flex justify-between font-bold">
-                                    {format(
-                                        new Date(invoice?.created * 1000),
-                                        "PPpp",
-                                    )}
+                                    {invoice?.created != null
+                                        ? format(
+                                              new Date(invoice.created * 1000),
+                                              "PPpp",
+                                          )
+                                        : "Date not available"}
                                 </div>
                             </div>
                             <div className="mt-12">
@@ -163,10 +169,14 @@ export function InvoicesTable({ invoiceList }: any) {
                                             </TableCell>
                                             <TableCell>1</TableCell>
                                             <TableCell>
-                                                $ {invoice?.amount_paid / 100}
+                                                {invoice?.amount_paid !==
+                                                    undefined &&
+                                                    `$ ${(invoice.amount_paid / 100).toFixed(2)}`}
                                             </TableCell>
                                             <TableCell>
-                                                $ {invoice?.amount_paid / 100}
+                                                {invoice?.amount_paid !==
+                                                    undefined &&
+                                                    `$ ${(invoice.amount_paid / 100).toFixed(2)}`}
                                             </TableCell>
                                         </TableRow>
                                     </TableBody>
@@ -185,7 +195,10 @@ export function InvoicesTable({ invoiceList }: any) {
 
                                 <div className="flex justify-between font-bold">
                                     <p>TOTAL</p>
-                                    <p>${invoice?.amount_paid / 100}</p>
+                                    <p>
+                                        {invoice?.amount_paid !== undefined &&
+                                            `$ ${(invoice.amount_paid / 100).toFixed(2)}`}
+                                    </p>
                                 </div>
                             </div>
                         </div>
