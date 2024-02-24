@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+<a href="https://github.com/deifos/soloinvoice" target="_blank">
+<img src="https://github.com/deifos/images/blob/main/placeholder.JPG" width="100%" alt="Banner" />
+</a>
+</p>
 
-## Getting Started
+<p align="center">
+  <img src="https://img.shields.io/github/contributors/deifos/soloinvoice" alt="GitHub contributors" />
+  <img src="https://img.shields.io/github/discussions/deifos/soloinvoice" alt="GitHub discussions" />
+  <img src="https://img.shields.io/github/issues/deifos/soloinvoice" alt="GitHub issues" />
+  <img src="https://img.shields.io/github/issues-pr/deifos/soloinvoice" alt="GitHub pull request" />
+</p>
 
-First, run the development server:
+Soloinvoice is a Simple WEB app to get the invoices from your stripe customers and print them as PDF, You need to get an API key from stripe from the project you want to get the invoices from and add it to the .env file, make sure is just read only key.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```properties
+STRIPE_SECRET_KEY=xxx
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔍 Table of Contents
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+-   [💻 Stack](#stack)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+-   [📝 Project Summary](#project-summary)
 
-## Learn More
+-   [⚙️ Setting Up](#setting-up)
 
-To learn more about Next.js, take a look at the following resources:
+-   [🚀 Run Locally](#run-locally)
 
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   [🙌 Contributors](#contributors)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+-   [📄 License](#license)
 
-## Deploy on Vercel
+## 💻 Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+-   [react](https://reactjs.org/): Essential for building user interfaces.
+-   ShadcnUI Components
+-   [next](https://nextjs.org/): Framework for React applications, including server-side rendering.
+-   [date-fns](https://date-fns.org/): Date utility library for parsing and formatting dates.
+-   [stripe](https://stripe.com/): Payment processing integration.
+-   [eslint](https://eslint.org/): Linting tool for maintaining code quality.
+-   [typescript](https://www.typescriptlang.org/): Superset of JavaScript providing static typing.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 📝 Project Summary
+
+-   [**app**](app): Main application logic and entry point.
+-   [**app/api**](app/api): API related functionalities and endpoints.
+-   [**app/api/get-invoices**](app/api/get-invoices): Specific endpoint for retrieving invoices.
+-   [**components**](components): Reusable UI components.
+-   [**components/ui**](components/ui): UI-specific components.
+-   [**lib**](lib): External libraries or utility functions.
+-   [**public**](public): Static assets and files for public access.
+
+## ⚙️ Setting Up
+
+#### Your Environment Variable
+
+-   Step 1
+
+-   Step 2
+
+## 🚀 Run Locally
+
+1.Clone the soloinvoice repository:
+
+```sh
+git clone https://github.com/deifos/soloinvoice
+```
+
+2.Install the dependencies with one of the package managers listed below:
+
+```bash
+pnpm install
+bun install
+npm install
+yarn install
+```
+
+3.Start the development mode:
+
+```bash
+pnpm dev
+bun dev
+npm run dev
+yarn dev
+```
+
+## 🙌 Contributors
+
+<table class="-mb-1" style="border:1px solid #404040;text-align:center;width:100%">
+<tbody><tr class="-my-2"><td class="-my-1" colspan="1" rowspan="1" style="width:14.29%;border:1px solid #404040;"><p><a target="_blank" rel="noopener noreferrer nofollow" class="text-blue-500 hover:text-blue-600 dark:text-blue-300 hover:text-blue-400 no-underline hover:underline hover:underline-offset-2 transition-colors cursor-pointer" href="https://github.com/deifos"><img class="inline !m-0" src="https://avatars.githubusercontent.com/u/3372909?v=4?s=100" alt="deifos" width="100px;"> <br><strong>deifos</strong> </a><br><a target="_blank" rel="noopener noreferrer nofollow" class="text-blue-500 hover:text-blue-600 dark:text-blue-300 hover:text-blue-400 no-underline hover:underline hover:underline-offset-2 transition-colors cursor-pointer" href="https://github.com/deifos/soloinvoice/commits?author=deifos"> 4 contributions</a></p></td></tr></tbody>
+</table>
+
+## 📄 License
+
+This project is licensed under the **GNU General Public License v3.0** - see the [**GNU General Public License v3.0**](https://github.com/deifos/soloinvoice/blob/main/LICENSE) file for details.
