@@ -4,12 +4,15 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { InvoicesTable } from "@/components/invoicesList";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 export default function Home() {
     const [email, setEmail] = useState("");
     const [invoiceList, setInvoiceList] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = async () => {
+        setIsLoading(true);
         const response = await fetch("/api/get-invoices", {
             method: "POST",
             headers: {
@@ -20,6 +23,7 @@ export default function Home() {
 
         const { invoices } = await response.json();
         setInvoiceList(invoices || []);
+        setIsLoading(false);
     };
 
     return (
@@ -59,13 +63,21 @@ export default function Home() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
-                    <Button
-                        onClick={() => {
-                            handleSubmit();
-                        }}
-                    >
-                        Get invoices
-                    </Button>
+
+                    {isLoading ? (
+                        <Button disabled>
+                            <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                            Please wait
+                        </Button>
+                    ) : (
+                        <Button
+                            onClick={() => {
+                                handleSubmit();
+                            }}
+                        >
+                            Get invoices
+                        </Button>
+                    )}
                 </div>
             </div>
             <div className="flex w-full  items-center space-x-2 my-12">
