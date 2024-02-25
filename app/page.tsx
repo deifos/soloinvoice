@@ -13,17 +13,28 @@ export default function Home() {
 
     const handleSubmit = async () => {
         setIsLoading(true);
-        const response = await fetch("/api/get-invoices", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email }),
-        });
+        try {
+            const response = await fetch("/api/get-invoices", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email }),
+            });
 
-        const { invoices } = await response.json();
-        setInvoiceList(invoices || []);
-        setIsLoading(false);
+            const res = await response.json();
+            if (!response.ok) {
+                console.log(res.error);
+                throw new Error("Network response was not ok");
+            }
+
+            setInvoiceList(res.invoices || []);
+        } catch (error) {
+            console.log(error);
+            console.error("Failed to fetch invoices:", error);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (

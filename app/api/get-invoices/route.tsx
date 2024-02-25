@@ -1,10 +1,19 @@
+import { Invoice } from "@/lib/types";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
 export async function POST(req: any, _res: NextResponse) {
+    if (!process.env.STRIPE_SECRET_KEY) {
+        console.log("returning error");
+        return NextResponse.json(
+            { error: "Please add stripe API key to the .env variables." },
+            { status: 500 },
+        );
+    }
+
     const { email } = await req.json();
 
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "");
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
     try {
         //This returns all the customer it could be on or many with the same email
@@ -26,7 +35,7 @@ export async function POST(req: any, _res: NextResponse) {
             });
 
             const paidInvoices = invoices.data.filter(
-                (invoice) => invoice.status === "paid",
+                (invoice: Invoice) => invoice.status === "paid",
             );
 
             allPaidInvoices = allPaidInvoices.concat(paidInvoices);
